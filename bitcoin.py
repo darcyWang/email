@@ -1,4 +1,5 @@
 #https://price.btcfans.com/
+from jinja2.loaders import FileSystemLoader
 import requests
 import os
 from lxml import etree
@@ -22,8 +23,10 @@ if (price<min):
     sendemail=True
     strategy="买入"
 #使用jinja2渲染HTML用于发送邮件
-env = Environment(loader=PackageLoader('', ''))
-template = env.get_template('template.html')
+templateLoader = FileSystemLoader(searchpath="./")
+templateEnv = Environment(loader=templateLoader)
+TEMPLATE_FILE = "template.html"
+template = templateEnv.get_template(TEMPLATE_FILE)
 template.stream(price=price,max=max,min=min,strategy=strategy).dump('email.html')
 #放弃使用Python脚本发送邮件的方案，选dawidd6/action-send-mail
 print("::set-env name=sendemail::{}".format(sendemail))

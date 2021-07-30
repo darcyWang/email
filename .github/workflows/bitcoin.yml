@@ -4,8 +4,8 @@ on:
   push:
     branches: 
       - master
-#   schedule:
-#     - cron: '*/10 *  * * *'
+  schedule:
+    - cron: '*/10 *  * * *'
 jobs:
   GetBtcPrice:
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
         subject: 比特币价格监控
         # Literal body:
         body: file://email.html
-        to: ${{ secrets.TO }}
+        to: ${{ secrets.SEND_TO }}
         from: ${{secrets.MAIL_USERNAME}} # <user@example.com>
         # Optional content type (defaults to text/plain):
         content_type: text/html

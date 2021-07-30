@@ -24,7 +24,7 @@ jobs:
         MIN: ${{ secrets.MIN }}
       run: python bitcoin.py
     - name: Send mail
-      if: ${{ env.sendemail == 'True' }}
+      # if: ${{ env.sendemail == 'True' }}
       uses: dawidd6/action-send-mail@v2
       with:
         server_address: smtp.163.com

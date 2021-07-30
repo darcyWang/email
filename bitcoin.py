@@ -29,4 +29,4 @@ TEMPLATE_FILE = "template.html"
 template = templateEnv.get_template(TEMPLATE_FILE)
 template.stream(price=price,max=max,min=min,strategy=strategy).dump('email.html')
 #放弃使用Python脚本发送邮件的方案，选dawidd6/action-send-mail
-print("::set-env name=sendemail::{}".format(sendemail))
+# print("::set-env name=sendemail::{}".format(sendemail))
